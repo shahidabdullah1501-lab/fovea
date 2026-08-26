@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --graphite: #1C1916;
+    --panel: #252119;
+    --panel-2: #2E2920;
+    --line: #3A342A;
+    --paper: #F1ECDE;
+    --paper-2: #E5DEC8;
+    --ink-on-paper: #211D16;
+    --text: #EDE7D9;
+    --text-soft: #A69C89;
+    --text-faint: #6F6656;
+    --brass: #C68A3D;
+    --brass-ink: #241703;
+    --brass-soft: rgba(198,138,61,0.16);
+    --signal: #D4432E;
+    --signal-soft: rgba(212,67,46,0.16);
+    --phosphor: #4FBFC4;
+    --phosphor-soft: rgba(79,191,196,0.14);
+    --danger: #E15A47;
+    --danger-soft: rgba(225,90,71,0.16);
+    --r-sm: 6px;
+    --r-md: 12px;
+    --r-lg: 20px;
+    --r-full: 999px;
+  }
+
+  body {
+    background-color: var(--graphite);
+    color: var(--text);
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
+  }
+
+  button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--phosphor);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--brass-soft);
+  }
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Prevent iOS auto-zoom on inputs */
+@media (max-width: 640px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+@layer components {
+  .card {
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 18px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 26px rgba(0,0,0,0.35);
+  }
+
+  .card-2 {
+    background-color: var(--panel-2);
+    border-radius: var(--r-md);
+    padding: 14px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--r-full);
+    padding: 13px 22px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+    min-height: 44px; /* Touch target minimum */
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  .btn-primary {
+    background-color: var(--brass);
+    color: var(--brass-ink);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .btn-ghost {
+    background-color: var(--panel-2);
+    color: var(--text);
+    border-color: var(--line);
+  }
+
+  .btn-danger {
+    background-color: var(--danger);
+    color: #2A0D08;
+  }
+
+  .btn-block {
+    width: 100%;
+  }
+
+  .btn-sm {
+    padding: 9px 16px;
+    font-size: 13px;
+    min-height: 36px;
+  }
+
+  .btn-icon {
+    padding: 11px;
+    border-radius: var(--r-full);
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--panel-2);
+    border-radius: var(--r-full);
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-soft);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .pill.warm {
+    background-color: var(--signal-soft);
+    color: var(--signal);
+  }
+
+  .pill.accent {
+    background-color: var(--brass-soft);
+    color: var(--brass);
+  }
+
+  .stat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  .stat-lbl {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .option-dark {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 13px 16px;
+    border-radius: var(--r-md);
+    border: 1.5px solid var(--line);
+    background-color: var(--panel-2);
+    color: var(--text);
+    margin-bottom: 9px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.15s ease;
+  }
+
+  .option-dark.selected {
+    border-color: var(--brass);
+    background-color: var(--brass-soft);
+  }
+
+  .quiz-card {
+    background-color: var(--paper);
+    color: var(--ink-on-paper);
+    border-radius: var(--r-lg);
+    padding: 18px;
+  }
+
+  .quiz-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 13px 16px;
+    border-radius: var(--r-md);
+    border: 1.5px solid var(--paper-2);
+    background-color: var(--paper-2);
+    color: var(--ink-on-paper);
+    margin-bottom: 9px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Archivo', sans-serif;
+  }
+
+  .quiz-option.selected {
+    border-color: var(--brass);
+    background-color: #ffffff;
+  }
+
+  .quiz-option.correct {
+    border-color: var(--brass);
+    background-color: #ffffff;
+    color: var(--brass-ink);
+    font-weight: 600;
+  }
+
+  .quiz-option.incorrect {
+    border-color: var(--danger);
+    background-color: var(--danger-soft);
+    color: var(--danger);
+  }
+
+  .rsvp-frame {
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 18px;
+  }
+
+  .rsvp-aperture {
+    background-color: var(--paper);
+    border-radius: 16px;
+    border: 2px solid var(--brass);
+    min-height: 176px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 6px var(--graphite);
+  }
+
+  .rsvp-word {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(28px, 7vw, 42px);
+    color: var(--ink-on-paper);
+    text-align: center;
+    padding: 0 18px;
+  }
+
+  .schulte-cell {
+    background-color: var(--panel-2);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 17px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.1s, color 0.1s;
+    min-height: 48px;
+  }
+
+  .schulte-cell.done {
+    background-color: var(--brass);
+    color: var(--brass-ink);
+    border-color: var(--brass);
+  }
+}
